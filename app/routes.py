@@ -117,11 +117,17 @@ def new_question():
         options = [request.form.get("option-1"), request.form.get("option-2"), request.form.get("option-3")]
         answer = request.form.get("answer")
         category = request.form.get("category")
-        weight = request.form.get("weight")
+        weight = request.form.get("weight", type=int)
 
-        new_question = Questions(id=random.randint(1, 1_000_000_000_000), text=text, options=options,
-                                 answer=answer, weight=weight, category=category)
-        db_add(new_question)
+        if not text or not answer or not all(options) or weight is None:
+            flash("Заполните все поля, вес должен быть числом.")
+        elif answer not in options:
+            flash("Правильный ответ должен совпадать с одним из вариантов.")
+        else:
+            new_question = Questions(id=random.randint(1, 1_000_000_000_000), text=text, options=options,
+                                     answer=answer, weight=weight, category=category)
+            db_add(new_question)
+            flash("Вопрос добавлен!")
     return render_template("new-question.html")
 
 @application.route("/question", methods=["GET", "POST"])
@@ -151,6 +157,8 @@ def question():
         if current_question.id in user.answers:
             abort(403)
         answer = request.form.get("answer")
+        if answer not in (current_question.options or []):
+            abort(400)
         bonus = get_answer(user, current_question, answer, correct=is_correct(current_question, answer))
 
         flash(f"+{bonus} к очкам! Переходи к следующей локации!" if bonus else "Ответ принят! Переходи к следующей локации!")
@@ -196,7 +204,8 @@ def delete_user():
         user_ids = [int(id) for id in request.form.getlist("user_id")]
         for user_id in user_ids:
             user = Users.query.filter_by(id=user_id).first()
-            db.session.delete(user)
+            if user:
+                db.session.delete(user)
         db.session.commit()
 
     search = request.args.get("search", type=int)
@@ -209,9 +218,10 @@ def delete_user():
 
 @application.route("/result")
 @game_started
+@login_required
 def result():
     user = get_user_from_session()
-    if len(user.answers) != QUESTIONS_AMOUNT:
+    if not user or len(user.answers) != QUESTIONS_AMOUNT or not user.finish_time:
         abort(404)
     correct_answers = [answer for answer in user.answers.values() if answer["is_correct"]]
     timedelta = (user.finish_time - user.registration_time).seconds
@@ -248,6 +258,12 @@ def stop_game():
 
 @application.route("/blocker", methods=["GET", "POST"])
 def blocker():
+    if GAME_START_TIME <= datetime.datetime.now():
+        return redirect(url_for("index"))
+
     next = request.args.get("next")
-    delta = (GAME_START_TIME - datetime.datetime.now()).seconds
+    if next not in application.view_functions:
+        next = "index"
+
+    delta = max(int((GAME_START_TIME - datetime.datetime.now()).total_seconds()), 0)
     return render_template("blocker.html", delta=delta, next=next)

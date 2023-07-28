@@ -16,3 +16,6 @@ def make_session_permanent():
 from app import models
 from app import functions
 from app import routes
+
+with application.app_context():
+    db.create_all()

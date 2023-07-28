@@ -59,8 +59,8 @@ def generate_decodes():
     question_ids = [question.id for question in Questions.query.order_by(Questions.weight).all()]
     l = list("0123456789abcdefghijklmnopqrstuvwxyz")
     d = dict()
-    for i in range(QUESTIONS_AMOUNT):
-        d[question_ids[i]] = "".join([random.choice(l) for _ in range(20)])
+    for question_id in question_ids[:QUESTIONS_AMOUNT]:
+        d[question_id] = "".join([random.choice(l) for _ in range(20)])
     return d
 
 def get_answer(user, question, answer, correct):
@@ -86,11 +86,10 @@ def get_time_list(seconds):
     }
 
 def stop_game_function(user):
-    questions = Questions.query.all()
     answers = user.answers.copy()
-    for question in questions:
-        if question.id not in answers:
-            answers[question.id] = {"answer": "", "is_correct": False}
+    for question_id in user.decodes:
+        if question_id not in answers:
+            answers[question_id] = {"answer": "", "is_correct": False}
     user.answers = answers
     user.finish_time = datetime.datetime.now()
     db_add(user)

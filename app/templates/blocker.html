@@ -126,35 +126,32 @@
     <script>
         window.onload = function() {
 
-            var distance = {{delta}}
+            var distance = {{ delta }};
+
+            function pad(value) {
+                return ('00' + value).slice(-2);
+            }
+
+            function render() {
+                document.querySelectorAll(".hours")[0].innerHTML = pad(Math.floor(distance / 3600));
+                document.querySelectorAll(".minutes")[0].innerHTML = pad(Math.floor(distance % 3600 / 60));
+                document.querySelectorAll(".seconds")[0].innerHTML = pad(Math.floor(distance % 60));
+            }
+
+            render();
 
             var timerId = setInterval(function() {
-
-                var hours = Math.floor(distance / 3600);
-                var minutes = Math.floor(distance % 3600 / 60);
-                var seconds = Math.floor(distance % 3600 % 60);
-
-                document.querySelectorAll(".hours")[0].innerHTML = ('0000' + hours).slice(-2);
-                document.querySelectorAll(".minutes")[0].innerHTML = ('0000' + minutes).slice(-2);
-                document.querySelectorAll(".seconds")[0].innerHTML = ('0000' + seconds).slice(-2);
-
-                seconds--;
                 distance--;
 
-                if (seconds < 0 && minutes == 0 && hours == 0) {
+                if (distance <= 0) {
+                    distance = 0;
+                    render();
                     clearInterval(timerId);
                     window.location.href = "{{ url_for(next) }}";
+                    return;
                 }
 
-                if (seconds == 00) {
-                    minutes--;
-                    seconds = 60;
-                    if (minute == 0) {
-                        hours--;
-                        minutes = 60;
-                    }
-                }
-
+                render();
             }, 1000);
         }
 
