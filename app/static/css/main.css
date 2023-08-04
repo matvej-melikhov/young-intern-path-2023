@@ -50,6 +50,9 @@
 body {
   padding: 0 25px;
   width: 100%;
+  background: white;
+  color: #101010;
+  color-scheme: light;
 }
 
 i {

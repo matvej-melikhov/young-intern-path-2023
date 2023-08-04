@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{url_for('index')}}static/img/logo.png">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}">
 
-    <link rel="stylesheet" href="{{ url_for('index') }}static/css/main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="https://kit.fontawesome.com/0ad5947fc3.js" crossorigin="anonymous"></script>
 
     <title>СОКТ-викторина | Игра не началась</title>
@@ -108,7 +108,7 @@
     <div class="blocker">
         <div class="blocker__inner">
             <a href="{{url_for('index')}}" class="blocker__to-main"><i class="fa-solid fa-house"></i>На главную</a>
-            <img src="{{url_for('index')}}static/img/logo.png" alt="" class="blocker__logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="" class="blocker__logo">
             <div class="blocker__item">
                 <div class="blocker__text">
                     <i class="fa-solid fa-clock"></i>До начала игры осталось:
