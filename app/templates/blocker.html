@@ -113,7 +113,7 @@
                 <div class="blocker__text">
                     <i class="fa-solid fa-clock"></i>До начала игры осталось:
                     <div class="blocker__time">
-                        <span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                        <span class="countdown"></span>
                     </div>
                 </div>
             </div>
@@ -128,14 +128,22 @@
 
             var distance = {{ delta }};
 
+            var output = document.querySelector(".countdown");
+
             function pad(value) {
                 return ('00' + value).slice(-2);
             }
 
             function render() {
-                document.querySelectorAll(".hours")[0].innerHTML = pad(Math.floor(distance / 3600));
-                document.querySelectorAll(".minutes")[0].innerHTML = pad(Math.floor(distance % 3600 / 60));
-                document.querySelectorAll(".seconds")[0].innerHTML = pad(Math.floor(distance % 60));
+                var days = Math.floor(distance / 86400);
+                var hours = Math.floor(distance % 86400 / 3600);
+                var minutes = Math.floor(distance % 3600 / 60);
+                var seconds = Math.floor(distance % 60);
+                var text = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+                if (days > 0) {
+                    text = days + " д " + text;
+                }
+                output.textContent = text;
             }
 
             render();

@@ -226,8 +226,13 @@ def result():
     correct_answers = [answer for answer in user.answers.values() if answer["is_correct"]]
     timedelta = (user.finish_time - user.registration_time).seconds
     time_list = get_time_list(timedelta)
+    ranked = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
+    ranked = [u for u in ranked if not u.is_admin and u.answers]
+    place = next((i + 1 for i, u in enumerate(ranked) if u.id == user.id), len(ranked))
+    total_players = len(ranked)
     return render_template("result.html", user=user, correct_answers=correct_answers,
-                           time_list=time_list, questions_amount=QUESTIONS_AMOUNT, max_score=MAX_SCORE)
+                           time_list=time_list, questions_amount=QUESTIONS_AMOUNT, max_score=MAX_SCORE,
+                           place=place, total_players=total_players)
 
 @application.route("/rating")
 @game_started
@@ -258,12 +263,12 @@ def stop_game():
 
 @application.route("/blocker", methods=["GET", "POST"])
 def blocker():
-    if GAME_START_TIME <= datetime.datetime.now():
+    if GAME_START_TIME <= now_msk():
         return redirect(url_for("index"))
 
-    next = request.args.get("next")
-    if next not in application.view_functions:
-        next = "index"
+    next_endpoint = request.args.get("next")
+    if next_endpoint not in application.view_functions:
+        next_endpoint = "index"
 
-    delta = max(int((GAME_START_TIME - datetime.datetime.now()).total_seconds()), 0)
-    return render_template("blocker.html", delta=delta, next=next)
+    delta = max(int((GAME_START_TIME - now_msk()).total_seconds()), 0)
+    return render_template("blocker.html", delta=delta, next=next_endpoint)

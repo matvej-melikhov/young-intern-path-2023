@@ -306,35 +306,8 @@ input {
         width: 100%;
     }
 
-    &__what-is {
-        display: inline-flex;
-        align-items: center;
-        margin-bottom: 18px;
-        background: $violet-gr;
-        color: white;
-        padding: 12px 20px;
-        font-size: 12px;
-        font-weight: 600;
-        border-radius: 30px;
-        box-shadow: 0 10px 24px rgba(139, 65, 193, .28);
-        transition: transform .25s ease, box-shadow .25s ease;
-
-        i {
-            font-size: 11px;
-            color: white;
-            margin-left: 0;
-            margin-right: 8px;
-            opacity: 1;
-        }
-
-        &:active {
-            transform: scale(.97);
-            box-shadow: 0 6px 16px rgba(139, 65, 193, .28);
-        }
-    }
-
     &__title {
-        margin: 0 0 22px;
+        margin: 0 0 14px;
     }
 
     // SVG hero banner, spanning the text column (not bleeding to the edges).
@@ -344,17 +317,64 @@ input {
         height: auto;
     }
 
+    // Date · time · place, right after the banner.
+    &__meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+        color: $black;
+        font-size: 16px;
+        font-weight: 500;
+
+        &-sep {
+            color: rgba(16, 16, 16, .28);
+            font-weight: 400;
+        }
+    }
+
     &__text {
         color: $violet;
         font-weight: 400;
         font-size: clamp(13px, 3.7vw, 15px);
         line-height: 1.45;
         margin-bottom: 10px;
+        text-align: center;
 
         span {
             color: $violet;
             font-weight: 500;
             font-size: inherit;
+        }
+    }
+
+    // Inline "СОКТ" badge with a dashed pill and info icon.
+    &__sokt {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-left: 2px;
+        padding: 3px 9px;
+        border: 1.5px dashed rgba(139, 65, 193, .55);
+        border-radius: 8px;
+        color: $violet;
+        font-weight: 700;
+        line-height: 1;
+        white-space: nowrap;
+        vertical-align: middle;
+        transition: background .25s ease;
+
+        i {
+            margin: 0;
+            font-size: 13px;
+            color: $violet;
+            opacity: .6;
+        }
+
+        &:active {
+            background: rgba(139, 65, 193, .1);
         }
     }
 
@@ -372,9 +392,9 @@ input {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 4px;
-        padding: 21px 24px;
-        border-radius: 16px;
+        gap: 10px;
+        padding: 23px 24px;
+        border-radius: 18px;
         background: $violet-gr;
         color: white;
         font-size: 15px;
@@ -390,6 +410,7 @@ input {
         }
 
         i {
+            margin: 0;
             color: white;
         }
 
@@ -424,7 +445,7 @@ input {
         align-items: center;
         justify-content: center;
         padding: 17px 24px;
-        border-radius: 16px;
+        border-radius: 18px;
         border: 1px solid rgba(28, 188, 120, .35);
         color: $green;
         font-weight: 600;
@@ -483,6 +504,7 @@ input {
 
 .reveal--1 { animation-delay: .05s; }
 .reveal--2 { animation-delay: .15s; }
+.reveal--2b { animation-delay: .22s; }
 .reveal--3 { animation-delay: .28s; }
 .reveal--4 { animation-delay: .38s; }
 .reveal--5 { animation-delay: .5s; }
@@ -1204,26 +1226,26 @@ table.iksweb th {
 }
 
 .result {
-    background: linear-gradient(135deg, #e825e8, #ffba00);
+    background: linear-gradient(135deg, #3f4fd1, #8b41c1);
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-bottom: 100px;
+    padding-bottom: 24px;
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: calc($header-height + 8vh);
+    padding-top: calc($header-height + 2vh);
 
     &__title {
         color: white;
-        margin-bottom: 3vh;
-        font-size: 26px;
+        margin-bottom: 1.4vh;
+        font-size: 23px;
         color: white;
 
         i {
-            font-size: 24px;
+            font-size: 21px;
             margin-left: 0;
             margin-right: 15px;
             color: white;
@@ -1232,8 +1254,8 @@ table.iksweb th {
 
     &__description {
         color: white;
-        font-size: 16px;
-        margin-bottom: 4vh;
+        font-size: 15px;
+        margin-bottom: 3.4vh;
     }
 
     &__inner {
@@ -1243,41 +1265,41 @@ table.iksweb th {
     &__item {
         //        width: 70%;
         margin: 0 auto;
-        padding: 40px 40px;
-        border-radius: 30px;
+        padding: 15px 28px;
+        border-radius: 24px;
         background: white;
         color: $green;
         text-align: center;
-        margin-bottom: 3vh;
+        margin-bottom: 0.9vh;
     }
 
     &__text {
-        font-size: 20px;
+        font-size: 17px;
         font-weight: 500;
-        color: #6c22a2;
-        line-height: auto;
+        color: #ff9429;
+        line-height: 1.25;
 
         i {
-            font-size: 20px;
+            font-size: 18px;
             margin-left: 0;
-            margin-right: 15px;
-            color: #c372ff;
+            margin-right: 12px;
+            color: #ff9429;
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 3px;
         }
 
         span {
             display: block;
             margin: 0 auto;
             //            width: max-content;
-            border-radius: 20px;
-            padding: 15px 30px;
-            background: $violet-gr;
-            box-shadow: 0px 4px 50px 0px rgba(139, 65, 193, 0.51);
+            border-radius: 16px;
+            padding: 9px 26px;
+            background: $orange-gr;
+            box-shadow: 0px 4px 36px 0px rgba(255, 148, 41, 0.42);
             color: white;
             font-weight: 500;
-            margin-top: 20px;
-            font-size: 30px;
+            margin-top: 10px;
+            font-size: 24px;
         }
     }
 }
@@ -1323,73 +1345,133 @@ table.iksweb th {
 }
 
 .rating {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 50px 30px;
-    background: linear-gradient(255deg, #8b41c1, #6341c1);
+    margin: 0 -25px;
+    padding: 48px 30px;
+    background: linear-gradient(160deg, #3f4fd1, #8b41c1);
     min-height: 100vh;
+
+    &__inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 
     &__title {
         color: white;
         text-align: center;
-        font-size: 28px;
-        margin-bottom: 30px;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 32px;
 
         i {
-            font-size: 26px;
-            margin-right: 20px;
+            font-size: 28px;
+            margin-right: 16px;
+            color: #ffbd29;
+        }
+    }
+
+    &__card {
+        border-radius: 20px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.07);
+        box-shadow: 0 24px 60px rgba(20, 8, 45, 0.35);
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    &__th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding: 18px 20px;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 600;
+        color: #fff;
+        background: $orange-gr;
+        white-space: nowrap;
+
+        i {
+            margin-right: 8px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+        }
+
+        &--place {
+            text-align: center;
+            width: 96px;
+        }
+
+        &--num {
+            text-align: center;
+            width: 116px;
+        }
+    }
+
+    &__row:nth-child(even) {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    &__td {
+        padding: 15px 20px;
+        text-align: left;
+        vertical-align: middle;
+        font-size: 17px;
+        font-weight: 400;
+        color: #fff;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        &--place {
+            text-align: center;
+        }
+
+        &--faculty {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        &--num {
+            text-align: center;
+        }
+
+        &--score {
+            font-weight: 700;
+            color: #ffbd29;
         }
     }
 
     &__place {
-        background: white;
-        color: $black;
-        width: 30px;
-        height: 30px;
-        display: block;
-        text-align: center;
-        line-height: 30px;
-        border-radius: 100%;
-    }
-
-    table {
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    .tbl-header {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 10px;
-        margin-bottom: 10px;
-        padding: 0px 10px;
-        background: linear-gradient(90deg, #ffa429, #ff8f29);
-    }
-
-    .tbl-content {
-        border-radius: 10px;
-        padding: 0px 10px;
-        margin-top: 0px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    th {
-        font-size: 18px !important;
-        padding: 20px 15px;
-        text-align: left;
-        font-weight: 400;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
         color: #fff;
-    }
+        font-weight: 600;
+        font-size: 16px;
 
-    td {
-        font-size: 16px !important;
-        padding: 15px;
-        text-align: left;
-        vertical-align: middle;
-        font-weight: 300;
-        font-size: 12px;
-        color: #fff;
-        border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+        &--1,
+        &--2,
+        &--3 {
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+        }
+
+        &--1 {
+            background: linear-gradient(45deg, #ffd23f, #ff9d29);
+            box-shadow: 0 6px 18px rgba(255, 180, 40, 0.45);
+        }
+
+        &--2 {
+            background: linear-gradient(45deg, #cfd4de, #a3abb9);
+        }
+
+        &--3 {
+            background: linear-gradient(45deg, #d8944a, #b06d2c);
+        }
     }
 }
 

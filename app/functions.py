@@ -13,7 +13,7 @@ def login_required(function):
 
 def game_started(function):
     def inner(*args, **kwargs):
-        if GAME_START_TIME <= datetime.datetime.now():
+        if GAME_START_TIME <= now_msk():
             return function(*args, **kwargs)
         return redirect(url_for("blocker", next=request.endpoint))
     inner.__name__ = function.__name__

@@ -36,7 +36,8 @@
         document.body.onload = function() {            
             document.body.style.padding = "0px";
             document.body.style.overflowX = "hidden";
-            document.querySelector(".scanner-btn").style.display = "none";
+            var scannerBtn = document.querySelector(".scanner-btn");
+            if (scannerBtn) scannerBtn.style.display = "none";
             document.getElementById("html5-qrcode-button-camera-permission").innerHTML = "<i class='fa-solid fa-camera'></i>Использовать мою камеру";
         }
     </script>
