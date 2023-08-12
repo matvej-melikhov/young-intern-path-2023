@@ -52,6 +52,16 @@ def get_user_from_session():
     user = Users.query.filter_by(id=user_id).first()
     return user
 
+def get_ranked_users(only_played=True):
+    """Игроки, отсортированные для рейтинга: по очкам убыв., затем по времени
+    регистрации убыв. Админы исключаются всегда; при only_played=True
+    остаются только те, кто уже отвечал (есть answers)."""
+    users = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
+    users = [u for u in users if not u.is_admin]
+    if only_played:
+        users = [u for u in users if u.answers]
+    return users
+
 def is_correct(question: Questions, answer: str):
     return question.answer.lower() == answer.lower()
 

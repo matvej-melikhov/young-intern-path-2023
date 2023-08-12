@@ -221,8 +221,7 @@ def result():
     correct_answers = [answer for answer in user.answers.values() if answer["is_correct"]]
     duration = int((user.finish_time - user.registration_time).total_seconds())
     time_list = get_time_list(duration)
-    ranked = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
-    ranked = [u for u in ranked if not u.is_admin and u.answers]
+    ranked = get_ranked_users()
     place = next((i + 1 for i, u in enumerate(ranked) if u.id == user.id), len(ranked))
     total_players = len(ranked)
     return render_template("result.html", user=user, correct_answers=correct_answers,
@@ -232,16 +231,14 @@ def result():
 @application.route("/rating")
 @game_started
 def rating():
-    users = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
-    users = [user for user in users if not user.is_admin]
+    users = get_ranked_users(only_played=False)
     return render_template("rating.html", users=users)
 
 @application.route("/mobile-rating")
 @game_started
 @login_required
 def mobile_rating():
-    users = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
-    users = [user for user in users if not user.is_admin and user.answers]
+    users = get_ranked_users()
     times = [get_time_list(int(((user.finish_time or datetime.datetime.now()) - user.registration_time).total_seconds())) for user in users]
     cur_user = get_user_from_session()
     return render_template("rating-mobile.html", users=users, cur_user=cur_user, times=times)
