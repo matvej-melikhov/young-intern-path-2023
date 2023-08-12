@@ -55,8 +55,13 @@ def get_user_from_session():
 def is_correct(question: Questions, answer: str):
     return question.answer.lower() == answer.lower()
 
+class NotEnoughQuestions(Exception):
+    """В базе меньше вопросов, чем требуется для игры (QUESTIONS_AMOUNT)."""
+
 def generate_decodes():
     question_ids = [question.id for question in Questions.query.order_by(Questions.weight).all()]
+    if len(question_ids) < QUESTIONS_AMOUNT:
+        raise NotEnoughQuestions(f"нужно {QUESTIONS_AMOUNT} вопросов, в базе {len(question_ids)}")
     l = list("0123456789abcdefghijklmnopqrstuvwxyz")
     d = dict()
     for question_id in question_ids[:QUESTIONS_AMOUNT]:

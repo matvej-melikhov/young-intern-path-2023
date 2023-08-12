@@ -41,24 +41,19 @@ def login():
         return redirect(url_for("map"))
 
     if request.method == "POST":
-        id = random.randint(1, 5_000)
-        while id in [user.id for user in Users.query.all()]:
-            id = random.randint(1, 5_000)
-        name = request.form['name']
-        last_name = request.form['last_name']
-        middle_name = request.form['middle_name']
-        faculty = request.form['faculty']
-        group = request.form['group']
-        registration_time = datetime.datetime.now()
-        score = 0
-        answers = dict()
-        decodes = generate_decodes()
+        try:
+            decodes = generate_decodes()
+        except NotEnoughQuestions:
+            flash("Игра ещё не готова: администратор не добавил достаточно вопросов.")
+            return render_template("login.html")
 
-        user = Users(id=id, name=name, last_name=last_name, middle_name=middle_name, faculty=faculty, group=group,
-                     registration_time=registration_time, is_admin=0, score=score, answers=answers, decodes=decodes)
-        db_add(user)
-        session["user_id"] = id
-        session["user_name"] = name
+        user = Users(name=request.form['name'], last_name=request.form['last_name'],
+                     middle_name=request.form['middle_name'], faculty=request.form['faculty'],
+                     group=request.form['group'], registration_time=datetime.datetime.now(),
+                     is_admin=0, score=0, answers=dict(), decodes=decodes)
+        db_add(user)  # id назначает БД (autoincrement)
+        session["user_id"] = user.id
+        session["user_name"] = user.name
 
         flash("Начинайте искать QR-коды!")
         return redirect(url_for("map"))
@@ -224,8 +219,8 @@ def result():
     if not user or len(user.answers) != QUESTIONS_AMOUNT or not user.finish_time:
         abort(404)
     correct_answers = [answer for answer in user.answers.values() if answer["is_correct"]]
-    timedelta = (user.finish_time - user.registration_time).seconds
-    time_list = get_time_list(timedelta)
+    duration = int((user.finish_time - user.registration_time).total_seconds())
+    time_list = get_time_list(duration)
     ranked = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
     ranked = [u for u in ranked if not u.is_admin and u.answers]
     place = next((i + 1 for i, u in enumerate(ranked) if u.id == user.id), len(ranked))
@@ -247,7 +242,7 @@ def rating():
 def mobile_rating():
     users = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
     users = [user for user in users if not user.is_admin and user.answers]
-    times = [get_time_list((user.finish_time - user.registration_time).seconds) if user.finish_time else get_time_list((datetime.datetime.now() - user.registration_time).seconds) for user in users]
+    times = [get_time_list(int(((user.finish_time or datetime.datetime.now()) - user.registration_time).total_seconds())) for user in users]
     cur_user = get_user_from_session()
     return render_template("rating-mobile.html", users=users, cur_user=cur_user, times=times)
 
