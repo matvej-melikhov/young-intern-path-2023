@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta http-equiv="Refresh" content="10">
     <link rel="icon" href="{{ url_for('static', filename='img/logo.jpg') }}">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
@@ -50,6 +49,22 @@
 
         </div>
     </div>
+
+    <script>
+        // Фоновое обновление тела таблицы каждые 10с — без перезагрузки страницы,
+        // чтобы не мигало и не сбрасывалась прокрутка на проекторе.
+        setInterval(function () {
+            fetch(window.location.href, { cache: "no-store" })
+                .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
+                .then(function (html) {
+                    var doc = new DOMParser().parseFromString(html, "text/html");
+                    var fresh = doc.querySelector(".rating__table tbody");
+                    var current = document.querySelector(".rating__table tbody");
+                    if (fresh && current) current.innerHTML = fresh.innerHTML;
+                })
+                .catch(function () { /* разовый сетевой сбой — просто ждём следующего тика */ });
+        }, 10000);
+    </script>
 </body>
 
 </html>
