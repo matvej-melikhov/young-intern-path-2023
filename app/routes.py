@@ -1,7 +1,15 @@
-from flask import render_template, flash
-from app.functions import *
-from app.config import *
-from app import application
+import datetime
+import random
+from flask import render_template, flash, request, session, abort, redirect, url_for
+from app import application, db
+from app.models import Users, Questions
+from app.config import QUESTIONS_AMOUNT, MAX_SCORE, ADMIN_CODE, GAME_START_TIME, now_msk
+from app.functions import (
+    login_required, game_started, admin_required, db_add,
+    get_question_by_hash, get_user_from_session, is_correct,
+    generate_decodes, NotEnoughQuestions, get_answer, get_time_list,
+    stop_game_function, get_ranked_users,
+)
 
 @application.errorhandler(403)
 def forbidden(error):

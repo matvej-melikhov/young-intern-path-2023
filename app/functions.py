@@ -1,7 +1,9 @@
+import datetime
 import random
 from flask import request, session, abort, redirect, url_for
-from app.models import *
-from app.config import *
+from app import db
+from app.models import Users, Questions
+from app.config import QUESTIONS_AMOUNT, GAME_START_TIME, now_msk
 
 def login_required(function):
     def inner(*args, **kwargs):
