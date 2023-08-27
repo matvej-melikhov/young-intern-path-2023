@@ -1,37 +1,9 @@
 import datetime
 import random
-from flask import request, session, abort, redirect, url_for
+from flask import session
 from app import db
 from app.models import Users, Questions
-from app.config import QUESTIONS_AMOUNT, GAME_START_TIME, now_msk
-
-def login_required(function):
-    def inner(*args, **kwargs):
-        if "user_id" in session:
-            return function(*args, **kwargs)
-        return abort(401)
-    inner.__name__ = function.__name__
-    return inner
-
-def game_started(function):
-    def inner(*args, **kwargs):
-        if GAME_START_TIME <= now_msk():
-            return function(*args, **kwargs)
-        return redirect(url_for("blocker", next=request.endpoint))
-    inner.__name__ = function.__name__
-    return inner
-
-def admin_required(function):
-    def inner(*args, **kwargs):
-        user = get_user_from_session()
-        if not user:
-            return abort(401)
-        if user.is_admin:
-            return function(*args, **kwargs)
-        else:
-            return abort(403)
-    inner.__name__ = function.__name__
-    return inner
+from app.config import QUESTIONS_AMOUNT
 
 def db_add(obj):
     db.session.add(obj)
@@ -55,9 +27,6 @@ def get_user_from_session():
     return user
 
 def get_ranked_users(only_played=True):
-    """Игроки, отсортированные для рейтинга: по очкам убыв., затем по времени
-    регистрации убыв. Админы исключаются всегда; при only_played=True
-    остаются только те, кто уже отвечал (есть answers)."""
     users = Users.query.order_by(Users.score.desc(), Users.registration_time.desc()).all()
     users = [u for u in users if not u.is_admin]
     if only_played:
@@ -68,7 +37,7 @@ def is_correct(question: Questions, answer: str):
     return question.answer.lower() == answer.lower()
 
 class NotEnoughQuestions(Exception):
-    """В базе меньше вопросов, чем требуется для игры (QUESTIONS_AMOUNT)."""
+    pass
 
 def generate_decodes():
     question_ids = [question.id for question in Questions.query.order_by(Questions.weight).all()]

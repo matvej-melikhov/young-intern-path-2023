@@ -16,13 +16,10 @@ ADMIN_CODE = os.environ.get("ADMIN_CODE", "hamapa23")
 MSK = datetime.timezone(datetime.timedelta(hours=3))
 
 def now_msk():
-    """Текущее московское время (timezone-aware)."""
     return datetime.datetime.now(MSK)
 
+# Разбирает время старта из env (ISO-формат). Время без таймзоны — московское.
 def _parse_start_time(raw, default):
-    """Разбирает время старта из env. Принимает ISO-формат, напр.
-    "2026-09-01T11:00" или "2026-09-01 11:00:00". Время без таймзоны
-    трактуется как московское."""
     if not raw:
         return default
     try:
