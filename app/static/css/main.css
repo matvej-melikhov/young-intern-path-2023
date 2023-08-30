@@ -1524,27 +1524,27 @@ table.iksweb th a {
   color: #ffbd29;
 }
 .rating__card {
-  border-radius: 20px;
+  border-radius: 14px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.07);
-  -webkit-box-shadow: 0 24px 60px rgba(20, 8, 45, 0.35);
-          box-shadow: 0 24px 60px rgba(20, 8, 45, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .rating__table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 .rating__th {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
-  padding: 18px 20px;
+  padding: 16px 20px;
   text-align: left;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: #fff;
-  background: linear-gradient(45deg, #ffbd29, #ff9429);
+  background: #ff9429;
   white-space: nowrap;
 }
 .rating__th i {
@@ -1554,35 +1554,44 @@ table.iksweb th a {
 }
 .rating__th--place {
   text-align: center;
-  width: 96px;
+  width: 7%;
+}
+.rating__th--player {
+  width: 33%;
+}
+.rating__th--fac {
+  width: 20%;
+}
+.rating__th--group {
+  width: 14%;
 }
 .rating__th--num {
   text-align: center;
-  width: 116px;
+  width: 13%;
 }
 .rating__row:nth-child(even) {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
 }
 .rating__td {
-  padding: 15px 20px;
+  padding: 14px 20px;
   text-align: left;
   vertical-align: middle;
   font-size: 17px;
   font-weight: 400;
   color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 .rating__td--place {
   text-align: center;
 }
 .rating__td--faculty {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
 }
 .rating__td--num {
   text-align: center;
 }
 .rating__td--score {
-  font-weight: 700;
+  font-weight: 400;
   color: #ffbd29;
 }
 .rating__place {
@@ -1595,28 +1604,22 @@ table.iksweb th a {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
 }
-.rating__place--1, .rating__place--2, .rating__place--3 {
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-}
 .rating__place--1 {
-  background: linear-gradient(45deg, #ffd23f, #ff9d29);
-  -webkit-box-shadow: 0 6px 18px rgba(255, 180, 40, 0.45);
-          box-shadow: 0 6px 18px rgba(255, 180, 40, 0.45);
+  background: #f2a93b;
 }
 .rating__place--2 {
-  background: linear-gradient(45deg, #cfd4de, #a3abb9);
+  background: #9aa3b2;
 }
 .rating__place--3 {
-  background: linear-gradient(45deg, #d8944a, #b06d2c);
+  background: #b3763a;
 }
 
 .admin-panel h2 {

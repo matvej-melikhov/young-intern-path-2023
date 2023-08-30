@@ -36,6 +36,17 @@ def get_ranked_users(only_played=True):
 def is_correct(question: Questions, answer: str):
     return question.answer.lower() == answer.lower()
 
+# Приводит фамилию к женскому роду, если отчество женское (оканчивается на "на").
+def feminize_surname(surname, patronymic=""):
+    if not surname or not (patronymic or "").endswith("на"):
+        return surname
+    for masc, fem in (("ский", "ская"), ("цкий", "цкая")):
+        if surname.endswith(masc):
+            return surname[:-len(masc)] + fem
+    if surname.endswith(("ов", "ев", "ёв", "ин", "ын")):
+        return surname + "а"
+    return surname
+
 class NotEnoughQuestions(Exception):
     pass
 

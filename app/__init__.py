@@ -17,5 +17,7 @@ from app import models
 from app import functions
 from app import routes
 
+application.jinja_env.filters["feminize"] = functions.feminize_surname
+
 with application.app_context():
     db.create_all()

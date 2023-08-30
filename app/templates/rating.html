@@ -14,9 +14,9 @@
                     <thead>
                         <tr>
                             <th class="rating__th rating__th--place">Место</th>
-                            <th class="rating__th">Имя</th>
-                            <th class="rating__th">Фамилия</th>
-                            <th class="rating__th">Факультет</th>
+                            <th class="rating__th rating__th--player">Игрок</th>
+                            <th class="rating__th rating__th--fac">Факультет</th>
+                            <th class="rating__th rating__th--group">Группа</th>
                             <th class="rating__th rating__th--num"><i class="fa-solid fa-circle-question"></i>Вопросов</th>
                             <th class="rating__th rating__th--num"><i class="fa-solid fa-star"></i>Очков</th>
                         </tr>
@@ -27,9 +27,9 @@
                             <td class="rating__td rating__td--place">
                                 <span class="rating__place{% if loop.index <= 3 %} rating__place--{{ loop.index }}{% endif %}">{{ loop.index }}</span>
                             </td>
-                            <td class="rating__td" title="{{ user.id }}">{{ user.name }}</td>
-                            <td class="rating__td">{{ user.last_name }}</td>
+                            <td class="rating__td" title="{{ user.id }}">{{ user.name }} {{ user.last_name | feminize(user.middle_name) }}</td>
                             <td class="rating__td rating__td--faculty">{{ user.faculty }}</td>
+                            <td class="rating__td rating__td--faculty">{{ user.group }}</td>
                             <td class="rating__td rating__td--num">{{ user.answers|length }}</td>
                             <td class="rating__td rating__td--num rating__td--score">{{ user.score }}</td>
                         </tr>
