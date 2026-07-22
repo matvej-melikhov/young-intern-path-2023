@@ -7,7 +7,7 @@
   <a href="https://sokt-profcom.ru/"><img alt="Website" src="https://img.shields.io/badge/Website-sokt--profcom.ru-1CBC78?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
   <a href="https://vk.com/wall-113893523_4181"><img alt="Announcement" src="https://img.shields.io/badge/VK-Announcement-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
   <a href="https://vk.com/wall-113893523_4194"><img alt="Winners" src="https://img.shields.io/badge/VK-Winners-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
-  <a href="https://vk.com/wall-113893523_4194"><img alt="Russian README" src="https://img.shields.io/badge/GitHub-Russian README-2F2F2F?style=for-the-badge&logo=github&logoColor=white"></a>
+  <a href="README_RUS.md"><img alt="Russian README" src="https://img.shields.io/badge/GitHub-Russian README-2F2F2F?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
 </div>
