@@ -1,71 +1,55 @@
+<h1>"The Young Intern Path" QR Quest</h1>
+
+<img src="docs/sokt-quiz-overview.png" alt="The Young Intern's Path" width="100%">
+
 <div align="center">
-
-<h1>QR-квест «Путь молодого стажёра»</h1>
-
-<img src="docs/sokt-quiz-overview.png" alt="Путь молодого стажёра" width="100%">
-
-<p><em>На старт! Внимание! Карьера!</em></p>
-
-<p>Веб-приложение для интерактивного QR-квеста первокурсников СПбГЭТУ «ЛЭТИ»</p>
-
 <p>
-  <img alt="Python"           src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white">
-  <img alt="Flask"            src="https://img.shields.io/badge/Flask-3.1-000000?style=flat-square&logo=flask&logoColor=white">
-  <img alt="Flask-SQLAlchemy" src="https://img.shields.io/badge/Flask--SQLAlchemy-3.1-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white">
-  <img alt="SQLite"           src="https://img.shields.io/badge/SQLite-3-003B57?style=flat-square&logo=sqlite&logoColor=white">
-</p>
-
-<p>
-  <a href="https://sokt-profcom.ru/"><img alt="Сайт" src="https://img.shields.io/badge/Сайт-sokt--profcom.ru-1CBC78?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
-  <a href="https://vk.com/wall-113893523_4181"><img alt="Анонс" src="https://img.shields.io/badge/VK-Анонс-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
-  <a href="https://vk.com/wall-113893523_4194"><img alt="Победители" src="https://img.shields.io/badge/VK-Победители-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
+  <a href="https://sokt-profcom.ru/"><img alt="Website" src="https://img.shields.io/badge/Website-sokt--profcom.ru-1CBC78?style=for-the-badge&logo=googlechrome&logoColor=white"></a>
+  <a href="https://vk.com/wall-113893523_4181"><img alt="Announcement" src="https://img.shields.io/badge/VK-Announcement-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
+  <a href="https://vk.com/wall-113893523_4194"><img alt="Winners" src="https://img.shields.io/badge/VK-Winners-0077FF?style=for-the-badge&logo=vk&logoColor=white"></a>
+  <a href="https://vk.com/wall-113893523_4194"><img alt="Russian README" src="https://img.shields.io/badge/GitHub-Russian README-2F2F2F?style=for-the-badge&logo=github&logoColor=white"></a>
 </p>
 
 </div>
 
----
+## 📖 About
 
-## 📖 О проекте
+A web application for running the interactive **"The Young Intern Path" QR Quest** — an
+event by the Student Career and Employment Office (SOKT) and the Trade Union Committee of
+Students and Postgraduates of ETU "LETI", timed to Freshman Day.
 
-Веб-приложение для проведения интерактивного **QR-квеста «Путь молодого стажёра»** —
-мероприятия Студенческого офиса карьеры и трудоустройства (СОКТ) и Профкома студентов и
-аспирантов СПбГЭТУ «ЛЭТИ», приуроченного ко Дню первокурсника.
+Participants register on the website, move around the university campus in search of purple
+QR codes, scan them, and answer questions about careers, the university, and student life.
+Correct answers earn points; the current standings are shown in real time. At the end of the
+quest, the Trade Union Committee awards the top performers.
 
-Участники регистрируются на сайте, перемещаются по территории университета в поисках
-фиолетовых QR-кодов, сканируют их и отвечают на вопросы о карьере, университете и
-студенческой жизни. За правильные ответы начисляются баллы; актуальное положение в
-рейтинге отображается в реальном времени. По итогам квеста Профком награждает наиболее
-результативных участников.
+| Parameter | Value |
+|-----------|-------|
+| 📅 Date & time | September 1, 2023, 11:00 |
+| 📍 Venue | ETU "LETI" courtyard, Saint Petersburg |
+| 👥 Participants | ~300 first-year students |
+| 🏛️ Organizers | SOKT, Trade Union Committee of Students and Postgraduates of ETU "LETI" |
+| 🛠️ Design + development | Matvej Melikhov — Head of the IT Department, SOKT |
 
-| Параметр | Значение |
-|----------|----------|
-| 📅 Дата и время | 1 сентября 2023 года, 11:00 |
-| 📍 Место | двор СПбГЭТУ «ЛЭТИ», Санкт-Петербург |
-| 👥 Участники | около 300 первокурсников |
-| 🏛️ Организаторы | СОКТ, Профком студентов и аспирантов СПбГЭТУ «ЛЭТИ» |
-| 🔗 Сайт игры | [sokt-profcom.ru](https://sokt-profcom.ru/) |
+## ✨ Features
 
-> **Дизайн и разработка:** Мелихов Матвей — руководитель IT-департамента СОКТ
-
-## ✨ Возможности
-
-| | Возможность |
+| | Feature |
 |---|---|
-| 🔐 | **Регистрация и авторизация** — регистрация студента (имя, факультет, группа) с сессионной авторизацией; отдельный вход администратора по коду |
-| 🗺️ | **Интерактивная карта** — карта площадки на Яндекс.Картах с метками зон: студент видит, куда идти и где искать следующий QR-код |
-| 📷 | **Сканер QR и вопросы** — встроенный сканер открывает вопрос нужной зоны, ответы проверяются, баллы начисляются с учётом веса вопроса |
-| 📊 | **Профиль с аналитикой** — прогресс прохождения, набранные баллы, число ответов и итоговая статистика (время и занятое место) |
-| 🏅 | **Рейтинг в реальном времени** — экран для зоны модератора (проектор) с автообновлением без перезагрузки и мобильный рейтинг для студентов |
-| 🛠️ | **Админ-панель** — добавление вопросов, управление участниками, статистика, ручной старт и остановка игры |
-| ⏳ | **Обратный отсчёт** — до старта игровые страницы закрыты экраном с таймером до начала квеста |
+| 🔐 | **Registration & authentication** — student sign-up (name, faculty, group) with session-based auth; a separate admin login by code |
+| 🗺️ | **Interactive map** — a venue map on Yandex.Maps with zone markers: students see where to go and where to find the next QR code |
+| 📷 | **QR scanner & questions** — the built-in scanner opens the question for the matching zone; answers are checked and points are awarded by question weight |
+| 📊 | **Profile with analytics** — completion progress, points earned, number of answers, and final stats (time and final place) |
+| 🏅 | **Real-time leaderboard** — a moderator-zone screen (projector) that auto-refreshes without reloading, plus a mobile leaderboard for students |
+| 🛠️ | **Admin panel** — adding questions, managing participants, statistics, manual game start/stop |
+| ⏳ | **Countdown** — before the start, game pages are locked behind a screen with a countdown to the quest |
 
-## 🏆 Победители
+## 🏆 Winners
 
 <table>
 <tr>
 <td valign="top">
 
-**Бакалавры**
+**Bachelor's**
 1. Дмитрий Бужинский — ФКТИ
 2. Никита Журухин — ФКТИ
 3. Анастасия Колесникова — ФКТИ
@@ -73,14 +57,14 @@
 </td>
 <td valign="top">
 
-**Магистры**
+**Master's**
 1. Никита Шахин — ФКТИ
 2. Виолетта Кругликова — ФКТИ
 
 </td>
 <td valign="top">
 
-**Иностранные студенты**
+**International**
 1. Linh Khanh — ИНПРОТЕХ
 2. Чэнь Цзиюань — ФЭА
 
@@ -89,49 +73,49 @@
 </table>
 
 <details>
-<summary>📸 Фото победителей</summary>
+<summary>📸 Winners photo</summary>
 
 <br>
 
-<img alt="Победители QR-квеста" width="640" src="https://sun9-27.vkuserphoto.ru/s/v1/ig2/jJ6XcHvEa2ZARnC1KWSQ9iYw653lLikYL4uuc0G9DGv1UdBteI8gXsprqV4alcMA68xL0C5s3PeQwvmDFsEwAUvO.jpg?quality=95&as=32x18,48x27,72x40,108x61,160x90,240x135,360x202,480x270,540x303,640x359,720x404,1080x607,1280x719,1440x809,2560x1438&from=bu&u=7AOyMIJT4SGalQWw7CuA9Mn0xNGJiEl0mMIPb9bWWqA&cs=640x0">
+<img alt="QR quest winners" width="640" src="https://sun9-27.vkuserphoto.ru/s/v1/ig2/jJ6XcHvEa2ZARnC1KWSQ9iYw653lLikYL4uuc0G9DGv1UdBteI8gXsprqV4alcMA68xL0C5s3PeQwvmDFsEwAUvO.jpg?quality=95&as=32x18,48x27,72x40,108x61,160x90,240x135,360x202,480x270,540x303,640x359,720x404,1080x607,1280x719,1440x809,2560x1438&from=bu&u=7AOyMIJT4SGalQWw7CuA9Mn0xNGJiEl0mMIPb9bWWqA&cs=640x0">
 
 </details>
 
-## 🧱 Стек технологий
+## 🧱 Tech stack
 
-| Слой | Технологии |
-|------|------------|
+| Layer | Technologies |
+|-------|--------------|
 | Backend | Python 3.9, Flask 3.1, Flask-SQLAlchemy |
-| База данных | SQLite |
-| Frontend | Jinja2, HTML, SCSS/CSS, шрифт Styrene, Font Awesome |
-| Карта | Конструктор Яндекс.Карт |
-| Сканер QR | html5-qrcode |
+| Database | SQLite |
+| Frontend | Jinja2, HTML, SCSS/CSS, Styrene font, Font Awesome |
+| Map | Yandex.Maps constructor |
+| QR scanner | html5-qrcode |
 
-## 📂 Структура проекта
+## 📂 Project structure
 
 ```
 sokt-quiz/
 ├── app/
-│   ├── __init__.py          # инициализация Flask-приложения и БД
-│   ├── config.py            # конфигурация, время старта игры, константы
-│   ├── models.py            # модели SQLAlchemy: Users, Questions
+│   ├── __init__.py          # Flask app and database initialization
+│   ├── config.py            # configuration, game start time, constants
+│   ├── models.py            # SQLAlchemy models: Users, Questions
 │   ├── decorators.py        # login_required, game_started, admin_required
-│   ├── functions.py         # бизнес-логика и хелперы (рейтинг, вопросы, время)
-│   ├── routes/              # маршруты, разбитые по областям
-│   │   ├── main.py          # главная и экран обратного отсчёта
-│   │   ├── auth.py          # регистрация и выход
-│   │   ├── game.py          # карта, сканер, вопросы, результаты
-│   │   ├── rating.py        # рейтинг (проектор) и мобильный рейтинг
-│   │   ├── admin.py         # админ-панель, вопросы, пользователи, статистика
-│   │   └── errors.py        # обработчики 401/403/404
-│   ├── templates/           # Jinja2-шаблоны страниц
-│   └── static/              # стили (css/scss), шрифты, изображения, pdf
-├── main.py                  # точка входа приложения
-├── requirements.txt         # зависимости
+│   ├── functions.py         # business logic and helpers (ranking, questions, time)
+│   ├── routes/              # routes split by area
+│   │   ├── main.py          # home page and countdown screen
+│   │   ├── auth.py          # registration and logout
+│   │   ├── game.py          # map, scanner, questions, results
+│   │   ├── rating.py        # leaderboard (projector) and mobile leaderboard
+│   │   ├── admin.py         # admin panel, questions, users, statistics
+│   │   └── errors.py        # 401/403/404 handlers
+│   ├── templates/           # Jinja2 page templates
+│   └── static/              # styles (css/scss), fonts, images, pdf
+├── main.py                  # application entry point
+├── requirements.txt         # dependencies
 └── README.md
 ```
 
-## 🚀 Запуск
+## 🚀 Getting started
 
 ```bash
 python -m venv .venv
@@ -140,8 +124,8 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Приложение стартует на `http://127.0.0.1:5000`. Время старта игры, секретный ключ и код
-администратора задаются переменными окружения `GAME_START_TIME`, `SECRET_KEY`, `ADMIN_CODE`.
+The app starts at `http://127.0.0.1:5000`. The game start time, secret key, and admin code
+are set via the `GAME_START_TIME`, `SECRET_KEY`, and `ADMIN_CODE` environment variables.
 
 > [!NOTE]
-> База данных `instance/base.db` создаётся автоматически при первом запуске и в репозиторий не входит.
+> The `instance/base.db` database is created automatically on first run and is not tracked in the repository.
